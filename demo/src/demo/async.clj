@@ -7,6 +7,9 @@
 (def sq-in (chan))
 (def sq-out (chan))
 
+(def m {dbl-out "Output channel for doubler"
+        sq-out "Output chan for square"})
+
 (def slow-doubler
   (go-loop []
    (let [input (<! dbl-in)]
@@ -49,7 +52,9 @@
     (>! dbl-in n)
     (>! sq-in n)
     (let [[v c] (alts! [dbl-out sq-out])]
-      (println "I got value " v "from channel: " c))))
+      (println "I got value " v "from channel: " (m c)))))
+
+
 
 (defn clear-chans
   []

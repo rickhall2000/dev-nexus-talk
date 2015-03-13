@@ -5,7 +5,8 @@
 
 (defn print-greeting
   [counter]
-  (if (= 1 counter)
+  (if (= 1 (mod counter 2
+                ))
         (println "World")
         (println "Hello")))
 
